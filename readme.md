@@ -39,13 +39,14 @@ module.exports.loop = function () {
     if(creep.carry.energy < creep.carryCapacity) { // 如果还未收集完能量
     // 其中creep.carry.energy为creep的携带资源，creep.carryCapacity为creep的携带资源总量
         var sources = creep.room.find(FIND_SOURCES); // 令sources为该房间可以找到的所有能源，是一个数组
-        if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) { // harvest是转移
-        // 意思是creep不在目标sources[0]的位置
+        if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) { // harvest是转移资源
+        // 意思是creep不在目标sources[0]的位置导致无法转移资源
             creep.moveTo(sources[0]); // 移动到sources[0]
         }
     }
     else { // 否则
         if( creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE ) {
+            // 如果无法传输则移动(这个函数好像是直接传输的，同时有一个返回值)
             creep.moveTo(Game.spawns['Spawn1']); // 移动到Spawn1
         }
     }
