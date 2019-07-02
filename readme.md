@@ -28,6 +28,8 @@ If you want to update it, try to use `./emsdk update` in emsdk
 
 创造一个Spawn`Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester1');`
 
+这个操作是需要在`Console`中使用
+
 黄色方块为能源(source)，使用带有`WORK`的Creep来获取，使用带有`CARRY`的来搬运
 
 在`Script`中使用`Ctrl+Enter`运行代码(或使用一个钩状图形)
@@ -52,4 +54,15 @@ module.exports.loop = function () {
     }
     // ERR_NOT_IN_RANGE为全局变量，大小为-9，意义为不在目标
 }
+```
+
+同时我们可以将上面的代码改为一种循环，方式如下：
+
+```java
+...
+    for(var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        // 其它部分均一样
+    }
+...
 ```
