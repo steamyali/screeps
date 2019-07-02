@@ -150,3 +150,64 @@ module.exports.loop = function () {
     }
 }
 ```
+
+第二个控制器级别有5种扩展，而一个房间的控制器需要经常升级(20000)，否则会判断失去控制权
+
+新建一个creep: `Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Builder1',     { memory: {
+role: 'builder' } } );`
+
+新建`role.builder`
+
+```java
+var roleBuilder = {
+
+    /** @param {Creep} creep **/
+    run: function(creep) {
+
+	    if(creep.memory.building && creep.carry.energy == 0) { // 没能量就挖矿
+            creep.memory.building = false;
+            creep.say('🔄 harvest');
+	    }
+	    if(!creep.memory.building && creep.carry.energy == creep.carryCapacity) { // 有能量就开建
+	        creep.memory.building = true; // 这不就是个flag么...真的丑
+	        creep.say('🚧 build');
+	    }
+
+	    if(creep.memory.building) { // 建造
+	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+            if(targets.length) {
+                if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                }
+            }
+	    }
+	    else { // 挖矿
+	        var sources = creep.room.find(FIND_SOURCES);
+            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+            }
+	    }
+	}
+};
+
+module.exports = roleBuilder;
+```
+
+`main`修改为
+```java
+var roleHarvester = require('role.harvester');
+var roleBuilder = require('role.builder');
+
+module.exports.loop = function () {
+
+    for(var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        if(creep.memory.role == 'harvester') {
+            roleHarvester.run(creep);
+        }
+        if(creep.memory.role == 'builder') {
+            roleBuilder.run(creep);
+        }
+    }
+}
+```
