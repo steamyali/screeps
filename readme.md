@@ -104,3 +104,49 @@ module.exports.loop = function () {
 }
 ```
 
+现在新建一个新的creep命名为`Upgrader1`，同时将其进行分类`Game.creeps['Harvester1'].memory.role = 'harvester'; Game.creeps['Upgrader1'].memory.role = 'upgrader';`
+
+新建文档`role.upgrader`
+
+```java
+var roleUpgrader = {
+
+    /** @param {Creep} creep **/
+    run: function(creep) {
+	    if(creep.carry.energy == 0) {
+            var sources = creep.room.find(FIND_SOURCES);
+            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0]);
+            }
+        } // 先让creep进行能量收集至满
+        else { 
+            if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) { 
+            // 前往这个房间的控制结构来升级
+                creep.moveTo(creep.room.controller);
+            }
+        }
+	}
+};
+
+module.exports = roleUpgrader;
+```
+
+`main`的修改与上面类似，只要对不同类型的creep执行不同命令即可
+
+```java
+var roleHarvester = require('role.harvester');
+var roleUpgrader = require('role.upgrader');
+
+module.exports.loop = function () {
+
+    for(var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        if(creep.memory.role == 'harvester') { // role: 类别
+            roleHarvester.run(creep);
+        }
+        if(creep.memory.role == 'upgrader') {
+            roleUpgrader.run(creep);
+        }
+    }
+}
+```
