@@ -28,7 +28,7 @@ If you want to update it, try to use `./emsdk update` in emsdk
 
 创造一个Spawn`Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester1');`
 
-这个操作是需要在`Console`中使用
+这个操作是需要在`Console`中使用，因为这个是只需要使用一次的而`Script`是需要循环运行
 
 黄色方块为能源(source)，使用带有`WORK`的Creep来获取，使用带有`CARRY`的来搬运
 
@@ -66,3 +66,41 @@ module.exports.loop = function () {
     }
 ...
 ```
+
+现在可以尝试使用模块(function)来简化代码，我们将上面的代码保存在role.harvester
+
+```java
+var roleHarvester = {
+
+    /** @param {Creep} creep **/
+    run: function(creep) {
+	    if(creep.carry.energy < creep.carryCapacity) {
+            var sources = creep.room.find(FIND_SOURCES);
+            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0]);
+            }
+        }
+        else {
+            if(creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(Game.spawns['Spawn1']);
+            }
+        }
+	}
+};
+
+module.exports = roleHarvester;
+```
+
+将main修改为
+```java
+var roleHarvester = require('role.harvester');
+
+module.exports.loop = function () {
+
+    for(var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        roleHarvester.run(creep);
+    }
+}
+```
+
