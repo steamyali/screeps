@@ -15,7 +15,7 @@ module.exports.loop = function () {
         if(creep.memory.role == 'builder') {
             roleBuilder.run(creep);
         }
-        if(creep.memoty.role == 'upgrader') {
+        if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
     }
