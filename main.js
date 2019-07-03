@@ -1,5 +1,5 @@
 var roleHarvester = require('harvester.js');
-var roleBuilder = require('harvester.js');
+var roleBuilder = require('builder.js');
 var roleUpgrader = require('upgrader.js');
 var rebirth = require('rebirth.js');
 
