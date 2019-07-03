@@ -15,14 +15,14 @@ var rebirth = {
         if(harvesters.length < 3) { 
             var newName = 'Harvester' + Game.time;
             console.log('Spawning new harvester: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,MOVE,MOVE,MOVE], newName,
                 {memory: {role: 'harvester'}});
         }
 
         var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         console.log('Builders: ' + builders.length); 
 
-        if(builders.length < 1) { 
+        if(builders.length < 2) { 
             var newName = 'Builder' + Game.time;
             console.log('Spawning new builder: ' + newName); 
             Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
@@ -30,10 +30,10 @@ var rebirth = {
         }
 
         var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-        console.log('Builders: ' + upgraders.length); 
+        console.log('Upgraders: ' + upgraders.length); 
 
-        if(upgraders.length < 1) { 
-            var newName = 'Builder' + Game.time;
+        if(upgraders.length < 3) { 
+            var newName = 'Upgraders' + Game.time;
             console.log('Spawning new upgarder: ' + newName); 
             Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName,
                 {memory: {role: 'upgrader'}});
