@@ -211,3 +211,9 @@ module.exports.loop = function () {
     }
 }
 ```
+
+`main`添加
+```java
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    console.log('Harvesters: ' + harvesters
+```
