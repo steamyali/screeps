@@ -10,6 +10,18 @@
 
 https://github.com/steamyali/screeps/invitations
 
+# 代码注释
+
+* `main.js`为主文件，所有的函数调用都在其中
+* `harvester.js`是一种分类为harvester的creep的代码，其中包含以下任务: 
+    * 采矿(...)
+    * 对于部分需要提供能量和耐久的部件进行维护
+    * 多于的矿(能源)丢到Spawn中来产生新的creep
+* `builder.js`是一种分类为builder的creep的代码，主要是进行采矿来修建ROAD,TOWER...
+* `upgrader.js`是一种分类为upgrader的creep的代码，主要是进行采矿来更新Energy Sources(能量源)
+* `rebirth.js`是重生creep代码，因为creep有寿命限制，可以保证creep的命名规则和个数一定
+* `makeroad.js`是造路的，好像没什么用...因为造路是一次性的，不要在意...
+
 # Connect C++
 
 Install emsdk:

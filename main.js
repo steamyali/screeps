@@ -7,7 +7,7 @@ var makeroad = require('makeroad.js');
 module.exports.loop = function () {
 
     rebirth.run();
-    makeroad.run();
+//    makeroad.run();
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
