@@ -46,8 +46,9 @@ var roleHarvester = {
             var Targets = creep.pos.findClosestByPlath(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION 
-                        || structure.structureType == STRUCTURE_SPAWN) 
-                        && structure.energy < structure.energyCapacity;
+                        && structure.energy < structure.energyCapacity)
+                        || (structure.structureType == STRUCTURE_SPAWN
+                        && structure.energy < 150);
                 }
             });
 
