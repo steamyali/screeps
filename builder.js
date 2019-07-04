@@ -12,10 +12,22 @@ var roleBuilder = {
 	        creep.say('build');
 	    }
 
+        const targets = creep.room.find(FIND_STRUCTURES, {
+            filter: object => ( object.hits < object.hitsMax 
+                && ( object.structureType == STRUCTURE_ROAD 
+                ||   object.structureType == STRUCTURE_RAMPART))});
+
+        targets.sort((a,b) => a.hits - b.hits);
+
 	    if(creep.memory.building == false) {
             var sources = creep.room.find(FIND_SOURCES);
             if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[0]);
+            }
+        }
+        else if(targets.length > 0) {
+            if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(targets[0]);
             }
         }
         else { 
@@ -26,7 +38,7 @@ var roleBuilder = {
                 }
             }
             else {
-                var Targets = creep.pos.findClosestByPlath(FIND_STRUCTURES, {
+                var Targets = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION 
                         && structure.energy < structure.energyCapacity)
