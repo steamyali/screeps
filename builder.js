@@ -14,8 +14,7 @@ var roleBuilder = {
 
         const targets = creep.room.find(FIND_STRUCTURES, {
             filter: object => ( object.hits < object.hitsMax 
-                && ( object.structureType == STRUCTURE_ROAD 
-                ||   object.structureType == STRUCTURE_RAMPART))});
+                && object.structureType == STRUCTURE_RAMPART)});
 
         targets.sort((a,b) => a.hits - b.hits);
 
