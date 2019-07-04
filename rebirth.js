@@ -15,7 +15,7 @@ var rebirth = {
         if(builders.length < 3) { 
             var newName = 'Builder' + Game.time;
             console.log('Spawning new builder: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE], newName,
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], newName,
                 {memory: {role: 'builder'}});
         }
 
@@ -25,18 +25,28 @@ var rebirth = {
         if(upgraders.length < 3) { 
             var newName = 'Upgraders' + Game.time;
             console.log('Spawning new upgarder: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE], newName,
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], newName,
                 {memory: {role: 'upgrader'}});
+        }
+        
+        var siegers = _.filter(Game.creeps, (creep) => creep.memory.role == 'sieger');
+        console.log('Siegers: ' + siegers.length); 
+
+        if(siegers.length < 3) { 
+            var newName = 'Siegers' + Game.time;
+            console.log('Spawning new sieger: ' + newName); 
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], newName,
+                {memory: {role: 'sieger'}});
         }
         
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
         console.log('Harvesters: ' + harvesters.length); 
 
-        if(harvesters.length < 3) { 
-            var newName = 'Harvester[Spawn1]' + Game.time;
-            console.log('Spawning new harvester[Spawn1]: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE], newName,
-                {memory: {role: 'harvester[Spawn1]'}});
+        if(harvesters.length < 4) { 
+            var newName = 'Harvester' + Game.time;
+            console.log('Spawning new harvester: ' + newName); 
+            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], newName,
+                {memory: {role: 'harvester'}});
         }
 
         if(Game.spawns['Spawn1'].spawning) {

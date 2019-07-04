@@ -18,6 +18,14 @@ var roleBuilder = {
 
         targets.sort((a,b) => a.hits - b.hits);
 
+        const Power = creep.room.find(FIND_STRUCTURES, { 
+            filter: (structure) => {
+                return (structure.structureType == STRUCTURE_EXTENSION
+                    || structure.structureType == STRUCTURE_TOWER) 
+                    && structure.energy < structure.energyCapacity;
+               }
+        });
+
 	    if(creep.memory.building == false) {
             var sources = creep.room.find(FIND_SOURCES);
             if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
@@ -27,6 +35,11 @@ var roleBuilder = {
         else if(targets.length > 0) {
             if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(targets[0]);
+            }
+        }
+        else if (Power.length > 0 ) {
+            if(creep.transfer(Power[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(Power[0]);
             }
         }
         else { 

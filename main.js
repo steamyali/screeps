@@ -2,12 +2,13 @@ var roleHarvester = require('harvester.js');
 var roleBuilder = require('builder.js');
 var roleUpgrader = require('upgrader.js');
 var rebirth = require('rebirth.js');
-var makeroad = require('makeroad.js');
+var changeroom = require('changeroom.js');
+var tower = require('tower.js');
 
 module.exports.loop = function () {
 
     rebirth.run();
-//    makeroad.run();
+    tower.run();
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -19,6 +20,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
+        }
+        if(creep.memory.role == 'sieger') {
+            changeroom.run(creep);
         }
     }
 }
