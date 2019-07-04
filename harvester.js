@@ -37,9 +37,16 @@ var roleHarvester = {
                         && structure.energy < 150);
                 }
             });
-
-            if(creep.transfer(Targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Targets);
+            
+            if ( Targets ) {
+                if(creep.transfer(Targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(Targets);
+                }
+            }
+            else {
+                if( creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE ) {
+                    creep.moveTo(Game.spawns['Spawn1']);
+                }
             }
         }
 	}
