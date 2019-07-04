@@ -42,9 +42,17 @@ var roleHarvester = {
                 creep.moveTo(targets1[0]);
             }
         }
-        else {
-            if(creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Game.spawns['Spawn1']);
+        else {            
+            var Targets = creep.pos.findClosestByPlath(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_EXTENSION 
+                        || structure.structureType == STRUCTURE_SPAWN) 
+                        && structure.energy < structure.energyCapacity;
+                }
+            });
+
+            if(creep.transfer(Targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(Targets);
             }
         }
 	}
