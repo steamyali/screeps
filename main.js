@@ -4,6 +4,7 @@ var roleUpgrader = require('upgrader.js');
 var rebirth = require('rebirth.js');
 var changeroom = require('changeroom.js');
 var tower = require('tower.js');
+var claim = require('claim.js');
 
 module.exports.loop = function () {
 
@@ -23,6 +24,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'sieger') {
             changeroom.run(creep);
+        }
+        if(creep.memory.role == 'claim') {
+            claim.run(creep);
         }
     }
 }
