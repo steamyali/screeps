@@ -26,7 +26,7 @@ var rebirth = {
         var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
         console.log('Upgraders: ' + upgraders.length); 
 
-        if(upgraders.length < 3) { 
+        if(upgraders.length < 5) { 
             var newName = 'Upgraders' + Game.time;
             console.log('Spawning new upgarder: ' + newName); 
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], newName,
@@ -35,9 +35,9 @@ var rebirth = {
         
         // 产生harvester1
         var harvesters1 = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester1');
-        console.log('Harvesters1: ' + harvester1.length); 
+        console.log('Harvesters1: ' + harvesters1.length); 
 
-        if(harvesters1.length < 3) { 
+        if(harvesters1.length < 4) { 
             var newName = 'Harvesters1' + Game.time;
             console.log('Spawning new harvester1: ' + newName); 
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], newName,
@@ -53,6 +53,22 @@ var rebirth = {
             console.log('Spawning new harvester: ' + newName); 
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], newName,
                 {memory: {role: 'harvester'}});
+        }
+
+
+        const target = Game.spawns['Spawn1'].room.find(FIND_HOSTILE_CREEPS, {
+            filter: function(object) {
+                return object.getActiveBodyparts(ATTACK) != 0;
+            }
+        });
+        var attackers = _.filter(Game.creeps, (creep) => creep.memory.role == 'attacker');
+        console.log('Attackers: ' + attackers.length); 
+
+        if(attackers.length < target.length * 2) { 
+            var newName = 'Attacker' + Game.time;
+            console.log('Spawning new attacker: ' + newName); 
+            Game.spawns['Spawn1'].spawnCreep([ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,TOUCH,TOUCH], newName,
+                {memory: {role: 'attacker'}});
         }
 
         // 这段函数没看懂...

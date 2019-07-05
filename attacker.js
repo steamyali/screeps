@@ -1,14 +1,14 @@
 var roleAttacker = {
 	
 	//攻击者，士兵(I don't kone how to explain it...)
-	//featur: [ATTACK,ATTACK,MOVE,MOVE，MOVE,MOVE,MOVE,MOVE,TOUCH,TOUCH],成本370
+	//featur: [ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,TOUCH,TOUCH],成本370
 	run: function(creep) {
 
 		const target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
 		
 		if(target) {
     		if(creep.attack(target) == ERR_NOT_IN_RANGE) {
-        	creep.moveTo(target);
+        	    creep.moveTo(target);
     		}
 		}
 		//自动寻找敌人并接近
@@ -19,6 +19,8 @@ var roleAttacker = {
 		}
 		//血量处于危险状态时回塔加血
 		
-		
 	}
 }
+
+module.exports = roleAttacker;
+
