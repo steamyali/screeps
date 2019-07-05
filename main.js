@@ -20,6 +20,7 @@ var rebirth = require('rebirth.js');
 var roleHarvester1 = require('harvester1.js');
 var tower = require('tower.js');
 var roleClaim = require('claim.js');
+var roleAttacker = require('attacker.js');
 
 // 该代码是循环执行，即这个代码上层会套一个while不断的运行
 // 如果要将当前状态进行传递，可以存储到creep.memory.x.(x是变量名)
@@ -45,6 +46,9 @@ module.exports.loop = function () {
         }
         if(creep.memory.role == 'claim') {
             roleClaim.run(creep);
+        }
+        if(creep.memory.role == 'attacker') {
+            roleAttacker.run(creep);
         }
     }
 }

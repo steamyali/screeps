@@ -55,6 +55,22 @@ var rebirth = {
                 {memory: {role: 'harvester'}});
         }
 
+
+        const target = Game.spawns['Spawn1'].room.find(FIND_HOSTILE_CREEPS, {
+            filter: function(object) {
+                return object.getActiveBodyparts(ATTACK) != 0;
+            }
+        });
+        var attackers = _.filter(Game.creeps, (creep) => creep.memory.role == 'attacker');
+        console.log('Attackers: ' + attackers.length); 
+
+        if(attackers.length < target.length * 2) { 
+            var newName = 'Attacker' + Game.time;
+            console.log('Spawning new attacker: ' + newName); 
+            Game.spawns['Spawn1'].spawnCreep([ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,TOUCH,TOUCH], newName,
+                {memory: {role: 'attacker'}});
+        }
+
         // 这段函数没看懂...
         if(Game.spawns['Spawn1'].spawning) {
             var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
