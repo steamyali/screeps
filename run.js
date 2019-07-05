@@ -6,16 +6,16 @@ var run = {
         // 第一优先级为找到可以储存资源的EXTENSION(一种放资源的装置)
 
         creep.say("carry");        
-        var Targets = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+        var Extensions = creep.pos.findClosestByPath(FIND_STRUCTURES, {
             filter: (structure) => {
                 return (structure.structureType == STRUCTURE_EXTENSION 
                     && structure.energy < structure.energyCapacity)
             }
         });
             
-        if ( Targets ) {
-            if(creep.transfer(Targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(Targets);
+        if ( Extensions ) {
+            if(creep.transfer(Extensions, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(Extensions);
             }
         }
         else {

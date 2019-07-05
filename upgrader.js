@@ -11,6 +11,8 @@ var roleUpgrader = {
 	        creep.memory.upgrading = true;
 	        creep.say('upgrade');
 	    }
+        
+        // 只进行对Controller的升级，不进行其它的任务
 
 	    if(creep.memory.upgrading == false) {
             var sources = creep.room.find(FIND_SOURCES);

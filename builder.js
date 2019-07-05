@@ -5,6 +5,7 @@ var roleBuilder = {
     /** @param {Creep} creep **/
     run: function(creep) {
 
+        // 跟其它的同理
 	    if(creep.carry.energy == 0) {
             creep.memory.building = false;
             creep.say('harvest');
@@ -14,6 +15,7 @@ var roleBuilder = {
 	        creep.say('build');
 	    }
 
+        // 找到最近的待修建的建筑
         const target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
 
 	    if(creep.memory.building == false) {
@@ -23,12 +25,14 @@ var roleBuilder = {
             }
         }
         else if(target) {
+            // 第一优先级为修建建筑
             if(creep.build(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
         }
         else { 
-            var Targets = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+            // 第二优先级为对缺少能量的TOWER提供能量
+            var Powers = creep.pos.findClosestByPath(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_TOWER 
                         && structure.energy < structure.energyCapacity)
@@ -41,6 +45,7 @@ var roleBuilder = {
                 }
             }
             else {
+                // 第三优先级为将多于的能量储存
                 Run.run(creep);
             }
         }

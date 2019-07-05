@@ -3,6 +3,7 @@ var claim = {
     /** @param {Creep} creep **/
     run: function(creep) {
 
+        // 这个姑且不理会
         if ( creep.room.name != 'E28N16') {
             const route = Game.map.findRoute(creep.room, 'E28N16');
             if(route.length > 0) {

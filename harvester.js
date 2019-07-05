@@ -31,10 +31,10 @@ var roleHarvester = {
                 creep.moveTo(sources[0]);
             }
         }
-        else if(targets.length > 0) {
+        else if(roads.length > 0) {
             // 我们认为修复ROAD的优先级比储存资源更高(其实修复ROAD只需要很短的时间即可)
-            if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0]);
+            if(creep.repair(roads[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(roads[0]);
             }
         }
         else {            
