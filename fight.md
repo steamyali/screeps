@@ -4,7 +4,9 @@
 
 ![](https://raw.githubusercontent.com/steamyali/screeps/master/fight.png)
 
-分为两种作战方式：冲锋与包围，还有续航队
+分为三种作战方式：正面决战，冲锋与包围，还有续航队
+
+正面决战就按照toucher&attacker,healer,ranged_attacker排列，冲锋组~~送死~~干扰对面判断
 
 续航队主要是heal和少量move，需要attack和ranged_attack护卫，速度需要1单位/3tick
 
