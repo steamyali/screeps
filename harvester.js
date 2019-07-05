@@ -2,9 +2,9 @@ var Run = require('run.js');
 
 var roleHarvester = {
 
-    /** @param {Creep} creep **/
     run: function(creep) {
 
+        // 这个就是一个可以传递的值: creep.memory.carrying 
 	    if(creep.carry.energy == 0) {
             creep.memory.carrying = false;
             creep.say('harvest');

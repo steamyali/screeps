@@ -1,7 +1,9 @@
 var rebirth = {
 
-    /** @param {Creep} creep **/
+    // 命名规则为职务+当前游戏时间，如Builders1766
     run: function() {
+        
+        // 清理存储空间
         for(var name in Memory.creeps) {
             if(!Game.creeps[name]) {
                 delete Memory.creeps[name];
@@ -9,6 +11,7 @@ var rebirth = {
             }
         }
 
+        // 产生builder
         var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
         console.log('Builders: ' + builders.length); 
 
@@ -19,6 +22,7 @@ var rebirth = {
                 {memory: {role: 'builder'}});
         }
 
+        // 产生upgrader
         var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
         console.log('Upgraders: ' + upgraders.length); 
 
@@ -29,16 +33,18 @@ var rebirth = {
                 {memory: {role: 'upgrader'}});
         }
         
-        var siegers = _.filter(Game.creeps, (creep) => creep.memory.role == 'sieger');
-        console.log('Siegers: ' + siegers.length); 
+        // 产生harvester1
+        var harvesters1 = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester1');
+        console.log('Harvesters1: ' + harvester1.length); 
 
-        if(siegers.length < 3) { 
-            var newName = 'Siegers' + Game.time;
-            console.log('Spawning new sieger: ' + newName); 
+        if(harvesters1.length < 3) { 
+            var newName = 'Harvesters1' + Game.time;
+            console.log('Spawning new harvester1: ' + newName); 
             Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE], newName,
-                {memory: {role: 'sieger'}});
+                {memory: {role: 'harvester1'}});
         }
         
+        // 产生harvester
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
         console.log('Harvesters: ' + harvesters.length); 
 
@@ -49,6 +55,7 @@ var rebirth = {
                 {memory: {role: 'harvester'}});
         }
 
+        // 这段函数没看懂...
         if(Game.spawns['Spawn1'].spawning) {
             var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
             Game.spawns['Spawn1'].room.visual.text(

@@ -14,12 +14,6 @@ var roleBuilder = {
 	        creep.say('build');
 	    }
 
-        const targets = creep.room.find(FIND_STRUCTURES, {
-            filter: object => ( object.hits < object.hitsMax 
-                && object.structureType == STRUCTURE_RAMPART)});
-
-        targets.sort((a,b) => a.hits - b.hits);
-
         const target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
 
 	    if(creep.memory.building == false) {
@@ -31,11 +25,6 @@ var roleBuilder = {
         else if(target) {
             if(creep.build(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
-            }
-        }
-        else if(targets.length > 0) {
-            if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0]);
             }
         }
         else { 
