@@ -1,7 +1,7 @@
 var roleTank = {
 	
 	//坦克，肉盾(I don't kone how to explain it...)
-	//featur: [ATTACK,MOVE,MOVE,MOVE,MOVE,MOVE,TOUCH,TOUCH,TOUCH,TOUCH],成本370
+	//featur: [TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,MOVE,ATTACK],成本370
 	run: function(creep) {
 
 		const target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);

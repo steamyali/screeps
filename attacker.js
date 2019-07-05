@@ -1,7 +1,7 @@
 var roleAttacker = {
 	
 	//攻击者，士兵(I don't kone how to explain it...)
-	//featur: [ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,TOUCH,TOUCH],成本370
+	//featur: [TOUGH,TOUGH,ATTACK,MOVE,MOVE,MOVE,ATTACK,MOVE],成本370
 	run: function(creep) {
 
 		const target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);

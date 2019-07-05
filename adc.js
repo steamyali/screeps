@@ -1,7 +1,7 @@
 var roleAdc = {
 	//射手 ADC
 	//ferture:
-	//[TOUCH,TOUCH,MOVE,MOVE,MOVE,MOVE,ATTACK,RANGED_ATTACK]成本400
+	//[TOUGH,TOUGH,MOVE,MOVE,MOVE,MOVE,ATTACK,RANGED_ATTACK]成本400
 	
 	run: function(creep) {
 		const target = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
