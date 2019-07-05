@@ -67,7 +67,7 @@ var rebirth = {
         if(attackers.length < target.length * 2) { 
             var newName = 'Attacker' + Game.time;
             console.log('Spawning new attacker: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,TOUCH,TOUCH], newName,
+            Game.spawns['Spawn1'].spawnCreep([ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,TOUGH,TOUGH], newName,
                 {memory: {role: 'attacker'}});
         }
 
