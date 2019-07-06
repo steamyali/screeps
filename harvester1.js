@@ -5,12 +5,12 @@ var changeroom = {
     /** @param {Creep} creep **/
     run: function(creep) {
 
-        // 我们当前房间的编号为'E29N16'，隔壁房间为'E28N16'
-        if ( creep.room.name != 'E28N16' ) {
+        // 我们当前房间的编号为'W11N4'，隔壁房间为'W11N3'
+        if ( creep.room.name != 'W11N3' ) {
             if ( creep.carry.energy == 0 ) {
                 // 这一段是还在赶往另外一个房间的路上
                 creep.say('move');
-                const route = Game.map.findRoute(creep.room, 'E28N16');
+                const route = Game.map.findRoute(creep.room, 'W11N3');
                 // 移动到隔壁房间
                 if(route.length > 0) {
                     const exit = creep.pos.findClosestByRange(route[0].exit);
@@ -34,7 +34,7 @@ var changeroom = {
         { 
             creep.say('carry');
             // 返回原本的房间
-            const route = Game.map.findRoute(creep.room, 'E29N16');
+            const route = Game.map.findRoute(creep.room, 'W11N4');
             if(route.length > 0) {
                 const exit = creep.pos.findClosestByRange(route[0].exit);
                 creep.moveTo(exit);

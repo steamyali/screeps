@@ -39,9 +39,9 @@ var roleBuilder = {
                 }
             });
             
-            if ( Targets ) {
-                if(creep.transfer(Targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(Targets);
+            if ( Powers ) {
+                if(creep.transfer(Powers, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(Powers);
                 }
             }
             else {
