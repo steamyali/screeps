@@ -1,3 +1,5 @@
+var create = require('create.js');
+
 var rebirth = {
 
     // 命名规则为职务+当前游戏时间，如Builders1766
@@ -11,65 +13,21 @@ var rebirth = {
             }
         }
 
-        // 产生builder
-        var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-        console.log('Builders: ' + builders.length); 
-
-        if(builders.length < 3) { 
-            var newName = 'Builder' + Game.time;
-            console.log('Spawning new builder: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE], newName,
-                {memory: {role: 'builder'}});
-        }
-
-        // 产生upgrader
-        var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-        console.log('Upgraders: ' + upgraders.length); 
-
-        if(upgraders.length < 5) { 
-            var newName = 'Upgraders' + Game.time;
-            console.log('Spawning new upgarder: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE], newName,
-                {memory: {role: 'upgrader'}});
-        }
+        var a = [WORK,WORK,CARRY,CARRY,MOVE,MOVE];
         
-        // 产生harvester1
-        var harvesters1 = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester1');
-        console.log('Harvesters1: ' + harvesters1.length); 
+        create.run(a, 'builder', 3);
+        create.run(a, 'upgrader', 5);
+        create.run(a, 'harvester1', 2);
+        create.run(a, 'harvester', 4);
 
-        if(harvesters1.length < 2) { 
-            var newName = 'Harvesters1' + Game.time;
-            console.log('Spawning new harvester1: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE], newName,
-                {memory: {role: 'harvester1'}});
-        }
-        
-        // 产生harvester
-        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-        console.log('Harvesters: ' + harvesters.length); 
-
-        if(harvesters.length < 4) { 
-            var newName = 'Harvester' + Game.time;
-            console.log('Spawning new harvester: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE,MOVE], newName,
-                {memory: {role: 'harvester'}});
-        }
-
+        a = [TOUGH,TOUGH,MOVE,MOVE,ATTACK,MOVE,ATTACK,MOVE]; 
 
         const target = Game.spawns['Spawn1'].room.find(FIND_HOSTILE_CREEPS, {
             filter: function(object) {
                 return object.getActiveBodyparts(ATTACK) != 0;
             }
         });
-        var attackers = _.filter(Game.creeps, (creep) => creep.memory.role == 'attacker');
-        console.log('Attackers: ' + attackers.length); 
-
-        if(attackers.length < target.length * 2) { 
-            var newName = 'Attacker' + Game.time;
-            console.log('Spawning new attacker: ' + newName); 
-            Game.spawns['Spawn1'].spawnCreep([ATTACK,ATTACK,MOVE,MOVE,MOVE,MOVE,TOUGH,TOUGH], newName,
-                {memory: {role: 'attacker'}});
-        }
+        create.run(a, 'attacker', 2 * target.length);
 
         // 这段函数没看懂...
         if(Game.spawns['Spawn1'].spawning) {

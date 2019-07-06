@@ -14,10 +14,10 @@
  * */
 
 var roleHarvester = require('harvester.js');
+var roleHarvester1 = require('harvester1.js');
 var roleBuilder = require('builder.js');
 var roleUpgrader = require('upgrader.js');
 var rebirth = require('rebirth.js');
-var roleHarvester1 = require('harvester1.js');
 var tower = require('tower.js');
 var roleClaim = require('claim.js');
 var roleAttacker = require('attacker.js');
