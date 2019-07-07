@@ -27,7 +27,7 @@ var rebirth = {
                 return object.getActiveBodyparts(ATTACK) != 0;
             }
         });
-        create.run(a, 'attacker', 2 * target.length);
+        create.run(a, 'attacker', Math.max(2 * target.length, 3));
 
         // 这段函数没看懂...
         if(Game.spawns['Spawn1'].spawning) {
