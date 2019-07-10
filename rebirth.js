@@ -20,7 +20,11 @@ var rebirth = {
         create.run(a, 'harvester1', 2);
         create.run(a, 'harvester', 4);
 
-        a = [TOUGH,TOUGH,MOVE,MOVE,ATTACK,MOVE,ATTACK,MOVE]; 
+        //a = [TOUGH,TOUGH,MOVE,MOVE,ATTACK,MOVE,ATTACK,MOVE];
+		//上面这个是旧的(弱一点)attacker,资源短缺时可以用
+		//以下是新stronger_attacker属性
+		a = [TOUGH,TOUGH,TOUGH,TOUGH,MOVE,MOVE,ATTACK,MOVE,ATTACK,MOVE,MOVE,MOVE,ATTACK,MOVE];
+		//预算为690,故又称土豪attacker
 
         const target = Game.spawns['Spawn1'].room.find(FIND_HOSTILE_CREEPS, {
             filter: function(object) {
